@@ -1,6 +1,6 @@
 var Footer = require('./Footer.react');
 var Header = require('./Header.react');
-//var MainSection = require('./MainSection.react');
+var MainPanel = require('./MainPanel.react');
 var React = require('react');
 var TodoStore = require('../stores/TodoStore');
 
@@ -48,7 +48,7 @@ var TodoApp = React.createClass({
   	return (
       <div>
         <Header/>
-        <MainSection
+        <MainPanel
           all_todos={this.state.all_todos}
           areAllComplete={this.state.areAllComplete}
         />
