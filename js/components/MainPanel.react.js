@@ -5,18 +5,14 @@ var TodoItem = require('./TodoItem.react');
 
 var MainSection = React.createClass({
 
-  propTypes: {
+  propTypes : {
     all_todos : ReactPropTypes.object.isRequired,
     is_all_complete : ReactPropTypes.bool.isRequired
   },
 
-  /**
-   * @return {object}
-   */
-  render: function() {
-    // This section should be hidden by default
-    // and shown when there are todos.
-    if (Object.keys(this.props.all_todos).length < 1) {
+  render : function() {
+    // hide MainPanel unless there are todos.
+    if ( Object.keys( this.props.all_todos ).length < 1 ) {
       return null;
     }
 
