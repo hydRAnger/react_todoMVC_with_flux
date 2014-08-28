@@ -18,7 +18,7 @@ function getState() {
   return {
     // all_todos -replace-> old nowShowing
     all_todos : TodoStore.get_all(),
-    areAllComplete : TodoStore.areAllComplete()
+    is_all_complete : TodoStore.is_all_complete()
   };
 }
 
@@ -50,7 +50,7 @@ var TodoApp = React.createClass({
         <Header/>
         <MainPanel
           all_todos={this.state.all_todos}
-          areAllComplete={this.state.areAllComplete}
+          is_all_complete={this.state.is_all_complete}
         />
         <Footer all_todos={this.state.all_todos} />
       </div>
