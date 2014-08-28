@@ -13,9 +13,9 @@ var EVT_CHANGE = 'change';
 function create(content) {
   var timestamp_as_id = Date.now();
   _todo_list[timestamp_as_id] = {
-    id: timestamp_as_id,
-    complete: false,
-    content: content
+    id : timestamp_as_id,
+    complete : false,
+    content : content
   };
 }
 
@@ -36,23 +36,23 @@ var TodoStore = merge(EventEmitter.prototype, {
    * Get the entire collection of TODOs.
    * @return {object}
    */
-  get_all: function() {
+  get_all : function() {
     return _todo_list;
   },
 
-  emit_change: function() {
+  emit_change : function() {
     this.emit(EVT_CHANGE);
   },
 
-  add_change_listener: function(callback) {
+  add_change_listener : function(callback) {
     this.on(EVT_CHANGE, callback);
   },
 
-  remove_change_listener: function(callback) {
+  remove_change_listener : function(callback) {
     this.removeListener(EVT_CHANGE, callback);
   }
 
-  dispatcherIndex: AppDispatcher.register(function(payload) {
+  dispatcherIndex : AppDispatcher.register(function(payload) {
     var action = payload.action;
 
     switch(action.action_type) {

@@ -1,13 +1,14 @@
-/**
- * This component operates as a "Controller-View".  It listens for changes in
- * the TodoStore and passes the new data to its children.
- */
-
-//var Footer = require('./Footer.react');
-//var Header = require('./Header.react');
+var Footer = require('./Footer.react');
+var Header = require('./Header.react');
 //var MainSection = require('./MainSection.react');
 var React = require('react');
 var TodoStore = require('../stores/TodoStore');
+
+//app.ALL_TODOS = 'all';
+//app.ACTIVE_TODOS = 'active';
+//app.COMPLETED_TODOS = 'completed';
+//var TodoFooter = app.TodoFooter;
+//var TodoItem = app.TodoItem;
 
 /**
  * Retrieve the current TODO data from the TodoStore
@@ -15,6 +16,7 @@ var TodoStore = require('../stores/TodoStore');
 //function getState() {
 function getState() {
   return {
+    // all_todos -replace-> old nowShowing
     all_todos : TodoStore.get_all(),
     areAllComplete : TodoStore.areAllComplete()
   };
@@ -27,6 +29,13 @@ var TodoApp = React.createClass({
   },
 
   componentDidMount : function() {
+			//var setState = this.setState;
+			//var router = Router({
+			//	'/': setState.bind(this, {nowShowing: app.ALL_TODOS}),
+			//	'/active': setState.bind(this, {nowShowing: app.ACTIVE_TODOS}),
+			//	'/completed': setState.bind(this, {nowShowing: app.COMPLETED_TODOS})
+			//});
+			//router.init('/');
     TodoStore.addChangeListener(this._onChange);
   },
 
@@ -34,13 +43,11 @@ var TodoApp = React.createClass({
     TodoStore.removeChangeListener(this._onChange);
   },
 
-  /**
-   * @return {object}
-   */
   render: function() {
+    //var todos = this.props.model.todos;
   	return (
       <div>
-        <Header />
+        <Header/>
         <MainSection
           all_todos={this.state.all_todos}
           areAllComplete={this.state.areAllComplete}
@@ -51,7 +58,7 @@ var TodoApp = React.createClass({
   },
 
   /**
-   * Event handler for 'change' events coming from the TodoStore
+   * Event handler for TodoStore's evt_change
    */
   _onChange : function() {
     this.setState(getState());
