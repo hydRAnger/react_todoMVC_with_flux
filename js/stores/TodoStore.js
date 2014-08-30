@@ -32,10 +32,16 @@ function destroy(id) {
 }
 
 var TodoStore = merge(EventEmitter.prototype, {
-  /**
-   * Get the entire collection of TODOs.
-   * @return {object}
-   */
+
+  is_all_complete : function() {
+    for (var id in _todos) {
+      if (!_todos[id].complete) {
+        return false;
+      }
+    }
+    return true;
+  },
+
   get_all : function() {
     return _todo_list;
   },

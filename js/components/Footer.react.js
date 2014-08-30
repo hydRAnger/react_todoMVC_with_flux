@@ -27,7 +27,7 @@ var Footer = React.createClass({
     }
 
     var itemsLeft = total - completed;
-    var itemsLeftPhrase = itemsLeft === 1 ? ' item ' : ' items ';
+    var itemsLeftPhrase = itemsLeft === 1 ? ' todo ' : ' todos ';
     itemsLeftPhrase += 'left';
 
     // Undefined and thus not rendered if no completed items are left.

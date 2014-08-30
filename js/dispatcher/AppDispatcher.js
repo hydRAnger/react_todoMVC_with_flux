@@ -9,10 +9,12 @@ var AppDispatcher = copyProperties(new Dispatcher(), {
    * @param  {object} action The data coming from the view.
    */
   handleViewAction : function(action) {
-    this.dispatch({
+    var payload = {
       source : 'VIEW_ACTION',
       action : action
-    });
+    }
+
+    this.dispatch(payload);
   }
 
 });
