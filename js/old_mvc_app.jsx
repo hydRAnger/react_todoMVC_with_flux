@@ -10,6 +10,7 @@ var app = app || {};
 
 (function () {
 	'use strict';
+  console.log("enter todo app!");
 
 	app.ALL_TODOS = 'all';
 	app.ACTIVE_TODOS = 'active';
@@ -156,7 +157,7 @@ var app = app || {};
 						<input
 							ref="newField"
 							id="new-todo"
-							placeholder="What needs to be done?"
+							placeholder="What needs to be done?!"
 							onKeyDown={this.handleNewTodoKeyDown}
 							autoFocus={true}
 						/>
@@ -171,12 +172,14 @@ var app = app || {};
 	var model = new app.TodoModel('react-todos');
 
 	function render() {
+    console.log("Lauch todo app!");
 		React.renderComponent(
 			<TodoApp model={model}/>,
 			document.getElementById('todoapp')
 		);
 	}
 
+  console.log("render todo app!");
 	model.subscribe(render);
 	render();
 })();

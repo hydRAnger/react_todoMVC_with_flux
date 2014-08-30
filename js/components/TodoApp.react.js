@@ -1,3 +1,5 @@
+/** @jsx React.DOM */
+
 var Footer = require('./Footer.react');
 var Header = require('./Header.react');
 var MainPanel = require('./MainPanel.react');
