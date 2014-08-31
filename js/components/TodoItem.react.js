@@ -10,7 +10,7 @@ var cx = require('react/lib/cx');
 var TodoItem = React.createClass({
 
   propTypes: {
-   todo : ReactPropTypes.object.isRequired
+    todo : ReactPropTypes.object.isRequired
   },
 
   getInitialState: function() {

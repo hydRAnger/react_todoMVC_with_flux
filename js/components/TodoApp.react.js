@@ -38,11 +38,11 @@ var TodoApp = React.createClass({
 			//	'/completed': setState.bind(this, {nowShowing: app.COMPLETED_TODOS})
 			//});
 			//router.init('/');
-    TodoStore.addChangeListener(this._onChange);
+    TodoStore.add_change_listener(this.on_change);
   },
 
   componentWillUnmount : function() {
-    TodoStore.removeChangeListener(this._onChange);
+    TodoStore.remove_change_listener(this.on_change);
   },
 
   render: function() {
@@ -62,7 +62,7 @@ var TodoApp = React.createClass({
   /**
    * Event handler for TodoStore's evt_change
    */
-  _onChange : function() {
+  on_change : function() {
     this.setState(getState());
   }
 

@@ -1,5 +1,5 @@
 var Dispatcher = require('./Dispatcher');
-
+var copyProperties = require('react/lib/copyProperties');
 var merge = require('react/lib/merge');
 
 var AppDispatcher = copyProperties(new Dispatcher(), {

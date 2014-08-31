@@ -9,6 +9,7 @@ var EVT_CHANGE = 'change';
 // Create a TODO item.
 function create(content) {
   var timestamp_as_id = Date.now();
+  console.log("create todo_item:"+content);
   _todo_list[timestamp_as_id] = {
     id : timestamp_as_id,
     complete : false,
@@ -17,11 +18,11 @@ function create(content) {
 }
 
 function update(id, updates) {
-    _todos[id] = merge(_todos[id], updates);
+    _todo_list[id] = merge(_todo_list[id], updates);
 }
 
-function updateAll(updates) {
-  for (var id in _todos) {
+function update_all(updates) {
+  for (var id in _todo_list) {
     update(id, updates);
   }
 }
@@ -37,8 +38,8 @@ function destroy(id) {
 var TodoStore = merge(EventEmitter.prototype, {
 
   is_all_complete : function() {
-    for (var id in _todos) {
-      if (!_todos[id].complete) {
+    for (var id in _todo_list) {
+      if (!_todo_list[id].complete) {
         return false;
       }
     }
@@ -97,10 +98,10 @@ AppDispatcher.register(function(payload) {
       break;
 
     case TodoConstants.TODO_TOGGLE_COMPLETE_ALL:
-      if (TodoStore.areAllComplete()) {
-        updateAll({complete: false});
+      if (TodoStore.is_all_complete()) {
+        update_all({complete: false});
       } else {
-        updateAll({complete: true});
+        update_all({complete: true});
       }
       break;
 
@@ -131,11 +132,7 @@ AppDispatcher.register(function(payload) {
       return true;
   }
 
-  // This often goes in each case that should trigger a UI change. This store
-  //   // needs to trigger a UI change after every view action, so we can make the
-  //     // code less repetitive by putting it here.  We need the default case,
-  //       // however, to make sure this only gets called after one of the cases above.
-  TodoStore.emitChange();
+  TodoStore.emit_change();
 
   return true; // No errors.  Needed by promise in Dispatcher.
 });

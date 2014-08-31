@@ -21,8 +21,8 @@ function Dispatcher() {
  */
 Dispatcher.prototype.register = function(callback) {
   "use strict";
-  _curr_id = _last_id + 1;
-  var id = _prefix + _last_id++;
+  var _curr_id = _last_id + 1;
+  var id = _prefix + _curr_id;
   this.$callbacks[id] = callback;
   return id;
 };

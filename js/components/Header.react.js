@@ -9,7 +9,7 @@ var Header = React.createClass({
   render : function() {
     return (
       <header id="header">
-        <h1>todo_list:</h1>
+        <h1>todos</h1>
         <TodoTextInput
           id="new-todo"
           //placeholder="What needs to be done?"
