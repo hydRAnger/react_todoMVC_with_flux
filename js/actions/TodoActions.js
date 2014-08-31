@@ -4,17 +4,18 @@ var TodoConstants = require('../constants/TodoConstants');
 var TodoActions = {
 
   create : function(text) {
+    console.log("action create: "+text);
     AppDispatcher.handleViewAction({
-      actionType: TodoConstants.TODO_CREATE,
-      text: text
+      actionType : TodoConstants.TODO_CREATE,
+      text : text
     });
   },
 
-  updateText : function(id, text) {
+  update_text : function(id, text) {
     AppDispatcher.handleViewAction({
-      actionType: TodoConstants.TODO_UPDATE_TEXT,
-      id: id,
-      text: text
+      actionType : TodoConstants.TODO_UPDATE_TEXT,
+      id : id,
+      text : text
     });
   },
 
@@ -22,33 +23,33 @@ var TodoActions = {
     var id = todo.id;
     if (todo.complete) {
       AppDispatcher.handleViewAction({
-        actionType: TodoConstants.TODO_UNDO_COMPLETE,
-        id: id
+        actionType : TodoConstants.TODO_UNDO_COMPLETE,
+        id : id
       });
     } else {
       AppDispatcher.handleViewAction({
-        actionType: TodoConstants.TODO_COMPLETE,
-        id: id
+        actionType : TodoConstants.TODO_COMPLETE,
+        id : id
       });
     }
   },
 
   toggleCompleteAll : function() {
     AppDispatcher.handleViewAction({
-      actionType: TodoConstants.TODO_TOGGLE_COMPLETE_ALL
+      actionType : TodoConstants.TODO_TOGGLE_COMPLETE_ALL
     });
   },
 
   destroy : function(id) {
     AppDispatcher.handleViewAction({
-      actionType: TodoConstants.TODO_DESTROY,
+      actionType : TodoConstants.TODO_DESTROY,
       id: id
     });
   },
 
   destroyCompleted : function() {
     AppDispatcher.handleViewAction({
-      actionType: TodoConstants.TODO_DESTROY_COMPLETED
+      actionType : TodoConstants.TODO_DESTROY_COMPLETED
     });
   }
 

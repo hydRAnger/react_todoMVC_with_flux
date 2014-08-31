@@ -12,13 +12,6 @@ function Dispatcher() {
   this.$curr_payload = null;
 }
 
-/**
- * Registers a callback to be invoked with every dispatched payload. Returns
- * a token that can be used with `waitFor()`.
- *
- * @param {function} callback
- * @return {string}
- */
 Dispatcher.prototype.register = function(callback) {
   "use strict";
   var _curr_id = _last_id + 1;
@@ -27,17 +20,7 @@ Dispatcher.prototype.register = function(callback) {
   return id;
 };
 
-/**
- * Removes a callback based on its token.
- *
- * @param {string} id
- */
 Dispatcher.prototype.unregister = function(id) {"use strict";
-  //invariant(
-      //this.$callbacks[id],
-      //'Dispatcher.unregister(...): `%s` does not map to a registered callback.',
-      //id
-      //);
   if ( callback[id] ) {
     delete this.$callbacks[id];
   } else {
@@ -45,14 +28,7 @@ Dispatcher.prototype.unregister = function(id) {"use strict";
   }
 };
 
-/**
- * Waits for the callbacks specified to be invoked before continuing execution
- * of the current callback. This method should only be used by a callback in
- * response to a dispatched payload.
- *
- * @param {array<string>} ids
- */
-Dispatcher.prototype.waitFor=function(ids) {"use strict";
+Dispatcher.prototype.waitFor = function(ids) {"use strict";
   invariant(
       this.$is_dispatching,
       'Dispatcher.waitFor(...): Must be invoked while dispatching.'
@@ -77,23 +53,13 @@ Dispatcher.prototype.waitFor=function(ids) {"use strict";
   }
 };
 
-/**
- * Dispatches a payload to all registered callbacks.
- *
- * @param {object} payload
- */
 Dispatcher.prototype.dispatch = function(payload) {
   "use strict";
-  //invariant(
-      //!this.$is_dispatching,
-      //'Dispatch.dispatch(...): Cannot dispatch in the middle of a dispatch.'
-      //);
   this.$start_dispatch(payload);
   try {
     for (var id in this.$callbacks) {
       if ( !this.$pending_status_hash[id] ) {
         this.$invoke_callback(id);
-        //continue;
       }
     }
   } finally {
@@ -101,23 +67,11 @@ Dispatcher.prototype.dispatch = function(payload) {
   }
 };
 
-/**
- * Is this Dispatcher currently dispatching.
- *
- * @return {boolean}
- */
 Dispatcher.prototype.is_dispatching = function() {
   "use strict";
   return this.$is_dispatching;
 };
 
-/**
- * Call the calback stored with the given id. Also do some internal
- * bookkeeping.
- *
- * @param {string} id
- * @internal
- */
 Dispatcher.prototype.$invoke_callback = function(id) {
   "use strict";
   this.$pending_status_hash[id] = true;
@@ -125,12 +79,6 @@ Dispatcher.prototype.$invoke_callback = function(id) {
   this.$handled_status_hash[id] = true;
 };
 
-/**
- * Set up bookkeeping needed when dispatching.
- *
- * @param {object} payload
- * @internal
- */
 Dispatcher.prototype.$start_dispatch = function(payload) {
   "use strict";
   for (var id in this.$callbacks) {
@@ -141,17 +89,10 @@ Dispatcher.prototype.$start_dispatch = function(payload) {
   this.$is_dispatching = true;
 };
 
-/**
- * Clear bookkeeping used for dispatching.
- *
- * @internal
- */
 Dispatcher.prototype.$stop_dispatch = function() {
   "use strict";
   this.$curr_payload = null;
   this.$is_dispatching = false;
 };
 
-
 module.exports = Dispatcher;
-

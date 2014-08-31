@@ -65,7 +65,8 @@ var TodoItem = React.createClass({
   },
 
   on_save : function(text) {
-    TodoActions.updateText(this.props.todo.id, text);
+    TodoActions.update_text(this.props.todo.id, text);
+    console.log("save todo: "+this.props.todo.id+" text: "+text);
     this.setState({is_edting: false});
   },
 

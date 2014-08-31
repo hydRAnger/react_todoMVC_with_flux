@@ -15,6 +15,7 @@ function create(content) {
     complete : false,
     content : content
   };
+  update(timestamp_as_id, {text:content});
 }
 
 function update(id, updates) {
@@ -61,27 +62,6 @@ var TodoStore = merge(EventEmitter.prototype, {
   remove_change_listener : function(callback) {
     this.removeListener(EVT_CHANGE, callback);
   }
-
-  //dispatcherIndex : AppDispatcher.register(function(payload) {
-  //  var action = payload.action;
-
-  //  switch(action.action_type) {
-  //    case TodoConstants.TODO_CREATE:
-  //      var content = action.text.trim() 
-  //      if (content !== '') {
-  //        create(content);
-  //        TodoStore.emit_change();
-  //      }
-  //      break;
-
-  //    case TodoConstants.TODO_DESTROY:
-  //      destroy(action.id);
-  //      TodoStore.emit_change();
-  //      break;
-  //  }
-
-  //  return true; 
-  //})
 
 });
 
