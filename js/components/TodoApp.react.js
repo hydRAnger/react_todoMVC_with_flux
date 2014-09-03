@@ -6,6 +6,9 @@ var MainPanel = require('./MainPanel.react');
 var React = require('react');
 var TodoStore = require('../stores/TodoStore');
 
+//var ALL_TODOS = 'all';
+//var ACTIVE_TODOS = 'active';
+//var COMPLETED_TODOS = 'completed';
 //app.ALL_TODOS = 'all';
 //app.ACTIVE_TODOS = 'active';
 //app.COMPLETED_TODOS = 'completed';
@@ -19,6 +22,7 @@ var TodoStore = require('../stores/TodoStore');
 function getState() {
   return {
     // all_todos -replace-> old nowShowing
+    now
     all_todos : TodoStore.get_all(),
     is_all_complete : TodoStore.is_all_complete()
   };
