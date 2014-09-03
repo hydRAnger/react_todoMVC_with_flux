@@ -22,7 +22,6 @@ var TodoStore = require('../stores/TodoStore');
 function getState() {
   return {
     // all_todos -replace-> old nowShowing
-    now
     all_todos : TodoStore.get_all(),
     is_all_complete : TodoStore.is_all_complete()
   };
