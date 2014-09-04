@@ -27,7 +27,7 @@ function getState() {
   };
 }
 
-var TodoApp = React.createClass({
+var TodoApp = React.createClass({displayName: 'TodoApp',
 
   getInitialState : function() {
     return getState();
@@ -51,14 +51,14 @@ var TodoApp = React.createClass({
   render: function() {
     //var todos = this.props.model.todos;
   	return (
-      <div>
-        <Header/>
-        <MainPanel
-          all_todos={this.state.all_todos}
-          is_all_complete={this.state.is_all_complete}
-        />
-        <Footer all_todos={this.state.all_todos} />
-      </div>
+      React.DOM.div(null, 
+        Header(null), 
+        MainPanel({
+          all_todos: this.state.all_todos, 
+          is_all_complete: this.state.is_all_complete}
+        ), 
+        Footer({all_todos: this.state.all_todos})
+      )
   	);
   },
 
