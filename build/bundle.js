@@ -5,7 +5,6 @@ var TodoConstants = require('../constants/TodoConstants');
 var TodoActions = {
 
   create : function(text) {
-    console.log("action create: "+text);
     AppDispatcher.handleViewAction({
       actionType : TodoConstants.TODO_CREATE,
       text : text
@@ -66,8 +65,6 @@ var TodoApp = require('./components/TodoApp.react');
 var React = require('react');
 
 
-console.log(React);
-console.log(TodoApp);
 React.renderComponent(
   TodoApp(null),
   document.getElementById('todoapp')
@@ -374,7 +371,6 @@ var TodoItem = React.createClass({displayName: 'TodoItem',
 
   on_save : function(text) {
     TodoActions.update_text(this.props.todo.id, text);
-    console.log("save todo: "+this.props.todo.id+" text: "+text);
     this.setState({is_edting: false});
   },
 
@@ -427,7 +423,6 @@ var TodoTextInput = React.createClass({displayName: 'TodoTextInput',
 
   _save : function() {
     this.props.onSave(this.state.value);
-    console.log(this.state.value);
     this.setState({
       value : ''
     });
@@ -598,7 +593,6 @@ var EVT_CHANGE = 'change';
 // Create a TODO item.
 function create(content) {
   var timestamp_as_id = Date.now();
-  console.log("create todo_item:"+content);
   _todo_list[timestamp_as_id] = {
     id : timestamp_as_id,
     complete : false,
@@ -1705,7 +1699,6 @@ function timestamp() {
 }
 
 
-// log is just a thin wrapper to console.log that prepends a timestamp
 exports.log = function() {
   console.log('%s - %s', timestamp(), exports.format.apply(exports, arguments));
 };
